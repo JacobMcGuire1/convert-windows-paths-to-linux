@@ -13,7 +13,6 @@ def convert_windows_path_to_linux(windows_path):
 
 def handle_drive_letter(path, mappings):
     drive = path[0]
-    replacement = ""
 
     if (drive in mappings):
         return mappings[drive] + path[1:]
