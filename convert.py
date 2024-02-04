@@ -19,19 +19,6 @@ def handle_drive_letter(path, mappings):
         return mappings[drive] + path[1:]
     else:
         return path[1:]
-    match(drive):
-        case "Y": 
-            replacement = "/media/oldhdd"
-        case "Z": 
-            replacement = "/media/backupdrive"
-        case "V": 
-            replacement = "/media/oldbootdrive"
-        case "X": 
-            replacement = "/media/newerhdd"
-        case "W": 
-            replacement = "~"
-    
-    return replacement + path[1:]
 
 mappings = {}
 with open(os.path.dirname(os.path.realpath(__file__)) + "/mappings.json") as f:
