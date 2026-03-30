@@ -1,0 +1,44 @@
+Windows Registry Editor Version 5.00
+
+; =========================================================
+; SSH HERE (right-click ON a folder)
+; =========================================================
+[HKEY_CLASSES_ROOT\Directory\shell\SSHHere]
+@="SSH here"
+"Icon"="C:\\Users\\jacob\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"
+
+[HKEY_CLASSES_ROOT\Directory\shell\SSHHere\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\jacob\\source\\repos\\convert-windows-paths-to-linux\\sshfolder.ps1\" \"%V\""
+
+
+; =========================================================
+; SSH HERE (right-click EMPTY SPACE in folder)
+; =========================================================
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SSHHere]
+@="SSH here"
+"Icon"="C:\\Users\\jacob\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SSHHere\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\jacob\\source\\repos\\convert-windows-paths-to-linux\\sshfolder.ps1\" \"%V\""
+
+
+; =========================================================
+; SSH HERE (tmux) — right-click ON a folder
+; =========================================================
+[HKEY_CLASSES_ROOT\Directory\shell\SSHHereTmux]
+@="SSH here (tmux)"
+"Icon"="C:\\Users\\jacob\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"
+
+[HKEY_CLASSES_ROOT\Directory\shell\SSHHereTmux\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\jacob\\source\\repos\\convert-windows-paths-to-linux\\tmf.ps1\" \"%V\""
+
+
+; =========================================================
+; SSH HERE (tmux) — right-click EMPTY SPACE in folder
+; =========================================================
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SSHHereTmux]
+@="SSH here (tmux)"
+"Icon"="C:\\Users\\jacob\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\SSHHereTmux\command]
+@="powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\Users\\jacob\\source\\repos\\convert-windows-paths-to-linux\\tmf.ps1\" \"%V\""

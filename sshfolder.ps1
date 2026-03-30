@@ -1,4 +1,13 @@
-$windowsPath = $PWD.Path
+param (
+    [string]$Path
+)
+
+if ($Path) {
+    $windowsPath = $Path
+} else {
+    $windowsPath = $PWD.Path
+}
+
 $pythonScript = Join-Path -Path $PSScriptRoot -ChildPath "convert.py"
 $linuxPath = python $pythonScript $windowsPath
 
