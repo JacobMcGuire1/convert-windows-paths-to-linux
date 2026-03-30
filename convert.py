@@ -2,27 +2,34 @@ import sys
 import json
 import os
 
-def convert_windows_path_to_linux(windows_path):
-    # Replace backslashes with forward slashes
-    linux_path = windows_path.replace("\\", "/")
-    
-    # Remove Windows drive letter if present
-    linux_path = linux_path.replace(":", "")
-
-    return linux_path
-
-def handle_drive_letter(path, mappings):
+def convert_windows_path(path, mappings):
+    path = path.replace("\\", "/")
     drive = path[0]
 
-    if (drive in mappings):
-        return mappings[drive] + path[1:]
-    else:
-        return path[1:]
+    if drive in mappings:
+        return mappings[drive] + path[2:]  # skip "Z:"
+    return path
 
-mappings = {}
-with open(os.path.dirname(os.path.realpath(__file__)) + "/mappings.json") as f:
-    mappings = json.loads(f.read())
+def convert_mac_path(path, mappings):
+    path = path.rstrip("/")
 
-windows_path = sys.argv[1]
-linux_path = handle_drive_letter(convert_windows_path_to_linux(windows_path), mappings)
+    for local_root, linux_root in mappings.items():
+        if path.startswith(local_root):
+            relative = path[len(local_root):]
+            return linux_root + relative
+
+    return path
+
+# Load mappings
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "mappings.json")) as f:
+    mappings = json.load(f)
+
+input_path = sys.argv[1]
+
+# Detect platform by path format
+if ":" in input_path[:3]:  # Windows (e.g. Z:\)
+    linux_path = convert_windows_path(input_path, mappings["windows"])
+else:
+    linux_path = convert_mac_path(input_path, mappings["mac"])
+
 print(linux_path)
